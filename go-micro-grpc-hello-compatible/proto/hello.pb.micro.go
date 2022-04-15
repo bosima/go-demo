@@ -73,14 +73,9 @@ func RegisterHelloHandler(s server.Server, hdlr HelloHandler, opts ...server.Han
 	}
 	type Hello struct {
 		hello
-		fullName string
 	}
 	h := &helloHandler{hdlr}
-	rh := &Hello{
-		hello:    h,
-		fullName: "Business.Hello",
-	}
-	return s.Handle(s.NewHandler(rh, opts...))
+	return s.Handle(s.NewHandler(&Hello{h}, opts...))
 }
 
 type helloHandler struct {

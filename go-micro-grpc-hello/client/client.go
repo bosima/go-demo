@@ -12,9 +12,25 @@ import (
 )
 
 func main() {
+	// with this, you can call a gRPC service that is not registered
+	// r := registry.NewRegistry()
+	// r.Register(&registry.Service{
+	// 	Name:    "grpchello.service",
+	// 	Version: "1.0.0",
+	// 	Nodes: []*registry.Node{
+	// 		{
+	// 			Id:      "grpchello.service-1",
+	// 			Address: "127.0.0.1:8001",
+	// 			Metadata: map[string]string{
+	// 				"name": "grpchello",
+	// 			},
+	// 		},
+	// 	},
+	// })
 
 	service := micro.NewService(
 		micro.Client(grpc.NewClient()),
+		//micro.Registry(r),
 	)
 
 	service.Init()
@@ -27,7 +43,7 @@ func main() {
 
 	fmt.Println(rsp)
 
-	fmt.Println("按回车键退出程序...")
+	fmt.Println("Press Enter key to exit the program...")
 	in := bufio.NewReader(os.Stdin)
 	_, _, _ = in.ReadLine()
 }

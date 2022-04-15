@@ -46,5 +46,3 @@ require (
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
-
-replace github.com/asim/go-micro/plugins/server/grpc/v4 v4.0.0-20220410141239-1919048c8f20 => github.com/bosima/go-micro/plugins/server/grpc/v4 v4.0.0-20220414070026-ef58af6dee44
