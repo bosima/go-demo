@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"rpchello/proto"
+	"registry-consul/proto"
 
+	"github.com/go-micro/plugins/v4/registry/consul"
 	"go-micro.dev/v4"
 	"go-micro.dev/v4/server"
 )
@@ -20,9 +21,12 @@ func (s *Hello) Say(ctx context.Context, req *proto.SayRequest, rsp *proto.SayRe
 
 func main() {
 
+	registry := consul.NewRegistry()
+
 	rpcServer := server.NewServer(
-		server.Name("rpchello.service"),
+		server.Name("registry-consul.service"),
 		server.Address("0.0.0.0:8001"),
+		server.Registry(registry),
 	)
 
 	// Register Handlers
