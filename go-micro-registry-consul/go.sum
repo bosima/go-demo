@@ -153,6 +153,8 @@ github.com/xanzy/ssh-agent v0.3.0 h1:wUMzuKtKilRgBAD1sUb8gOwwRr2FGoBVumcjoOACClI
 github.com/xanzy/ssh-agent v0.3.0/go.mod h1:3s9xbODqPuuhK9JV1R321M/FlMZSBvE5aY6eAcqrDh0=
 go-micro.dev/v4 v4.6.0 h1:sY1Ps3Vgq8tFzcUGps9WnJhy1AKspXK+4wWIwugiRss=
 go-micro.dev/v4 v4.6.0/go.mod h1:7UY87mLE6T4zHKsNS5D+VWZcXGTEvU1rbA90PezzlWM=
+go-micro.dev/v4 v4.6.1-0.20220419144745-367771923c07 h1:7Mfshk+x7FwmQXhql1Ge9WEqLbw6Z8QgYXPYM0NP4C0=
+go-micro.dev/v4 v4.6.1-0.20220419144745-367771923c07/go.mod h1:7UY87mLE6T4zHKsNS5D+VWZcXGTEvU1rbA90PezzlWM=
 golang.org/x/crypto v0.0.0-20181029021203-45a5f77698d3/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
 golang.org/x/crypto v0.0.0-20190219172222-a4c6cb3142f2/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
