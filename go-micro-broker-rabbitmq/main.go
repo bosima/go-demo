@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"log"
@@ -35,13 +34,7 @@ func handle(ctx context.Context, msg interface{}) (err error) {
 		}
 	}()
 
-	b, err := json.Marshal(msg)
-	if err != nil {
-		log.Println(err)
-		return
-	}
-
-	log.Println(string(b))
+	log.Println(msg)
 	return
 }
 
@@ -80,7 +73,7 @@ func main() {
 		subcribeTopic,    // 订阅的Topic
 		service.Server(), // 注册到的rpcServer
 		handle,           // 消息处理函数
-		server.SubscriberContext(subOpts.Context), // 订阅上下文，也可以使用默认的context.Background
+		server.SubscriberContext(subOpts.Context), // RabbitMQ订阅参数，也可以不设置
 		server.SubscriberQueue(queueName),         // 队列名称
 	)
 

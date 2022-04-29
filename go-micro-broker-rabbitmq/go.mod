@@ -3,7 +3,7 @@ module rabbitmqdemo
 go 1.18
 
 require (
-	github.com/go-micro/plugins/v4/broker/rabbitmq v1.0.0
+	github.com/go-micro/plugins/v4/broker/rabbitmq v1.0.1
 	go-micro.dev/v4 v4.6.1-0.20220410141239-1919048c8f20
 )
 
@@ -44,5 +44,3 @@ require (
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 )
-
-replace github.com/go-micro/plugins/v4/broker/rabbitmq => github.com/bosima/go-micro-plugins/v4/broker/rabbitmq v1.0.1-0.20220428053450-9f6471080722
