@@ -18,3 +18,8 @@ Restart RabbitMQ:
 ## Run the demo:
 
     go run main.go
+
+or
+
+    go run consumer/consumer.go
+    go run publisher/publisher.go
