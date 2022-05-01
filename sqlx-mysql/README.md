@@ -11,7 +11,7 @@ Create a database:
 CREATE DATABASE `test` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 ```
 
-create a table：
+Create a table：
 
 ```sql
 CREATE TABLE test.Person (
