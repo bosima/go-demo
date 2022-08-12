@@ -1,0 +1,10 @@
+title = "HTTP透明代理"
+port = 8088
+
+[target]
+privateKey = "123456"
+host = "https://restapi.amap.com"
+uris = [
+  "/v3/geocode/geo",
+  "/v3/geocode/regeo"
+]
