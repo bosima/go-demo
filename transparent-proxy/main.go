@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/BurntSushi/toml"
 )
@@ -43,8 +44,12 @@ func main() {
 	}
 
 	// 读取支持的Uri列表，遍历注册http处理函数
-	for _, uri := range confs.Target.Uris {
-		http.HandleFunc(uri, proxyHandle)
+	if len(confs.Target.Uris) > 0 {
+		for _, uri := range confs.Target.Uris {
+			http.HandleFunc(uri, proxyHandle)
+		}
+	} else {
+		http.HandleFunc("/", proxyHandle)
 	}
 
 	// 读取配置的端口号
@@ -64,21 +69,51 @@ func proxyHandle(w http.ResponseWriter, r *http.Request) {
 
 	// 从请求中读取请求Uri和参数，拼接之
 	requestUri := host + r.RequestURI
-	//fmt.Println(requestUri)
 
 	// 拼接代理服务的key
-	requestUri = requestUri + "&key=" + confs.Target.PrivateKey
+	if strings.Trim(confs.Target.PrivateKey, " ") != "" {
+		requestUri = requestUri + "&key=" + confs.Target.PrivateKey
+	}
 
-	// 发起http调用
-	rsp, err := http.Get(requestUri)
+	// 读请求体
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	// 创建请求
+	req, err := http.NewRequest(r.Method, requestUri, strings.NewReader(string(reqBody)))
+	if err != nil {
+		log.Println(err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	// 写请求头
+	for k, v := range r.Header {
+		w.Header().Set(k, v[0])
+	}
+
+	cli := &http.Client{}
+	rsp, err := cli.Do(req)
 	if err != nil {
 		fmt.Println(err)
 	}
-	defer func() { _ = rsp.Body.Close() }()
+
+	if rsp == nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	defer rsp.Body.Close()
 
 	// HTTP响应头
-	for k, v := range rsp.Header {
-		w.Header().Set(k, v[0])
+	if rsp.Header != nil {
+		for k, v := range rsp.Header {
+			w.Header().Set(k, v[0])
+		}
 	}
 
 	// HTTP状态码
