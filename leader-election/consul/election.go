@@ -67,10 +67,10 @@ func (c *consulLeaderElection) Run() error {
 			ylog.Info("leaderKV no session")
 			c.wactchHandler(waitIndex, leaderKV)
 			waitTime = time.Duration(c.lockDelay) * time.Second
-		} else {
-			waitTime = 60 * time.Second
+			continue
 		}
 
+		waitTime = 60 * time.Second
 		ylog.Debug("leader is alivable, leader election do nothing")
 	}
 }
