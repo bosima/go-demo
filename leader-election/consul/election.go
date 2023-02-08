@@ -70,6 +70,8 @@ func (c *consulLeaderElection) Run() error {
 		} else {
 			waitTime = 60 * time.Second
 		}
+
+		ylog.Debug("leader is alivable, leader election do nothing")
 	}
 }
 
