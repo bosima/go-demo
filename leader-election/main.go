@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/bosima/go/leader-election/consul"
+	"github.com/bosima/go-demo/leader-election/consul"
 	"github.com/bosima/ylog"
 )
 

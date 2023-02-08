@@ -1,4 +1,4 @@
-module github.com/bosima/go/leader-election
+module github.com/bosima/go-demo/leader-election
 
 go 1.18
 
